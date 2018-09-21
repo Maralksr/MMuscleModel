@@ -9,9 +9,9 @@
 
 double getTendonForce(NormTendonLength)
 {
-	const cT= 27.8;
-	const kT= 0.0047;
-	const LrT= 0.964;
+	double cT= 27.8;
+	double kT= 0.0047;
+	double LrT= 0.964;
 	TendonForce= cT * kT * log(exp((NormTendonLength- LrT)/kT)+ 1 ));
 	return TendonForce;
 }
@@ -23,9 +23,9 @@ double getTendonForce(NormTendonLength)
 
 double getThickFilamentCompressionForce(NormMuscleLength)
 {
-	const c2= -0.02;
-	const k2= -21;
-	const Lr2=0.70;
+	double c2= -0.02;
+	double k2= -21;
+	double Lr2=0.70;
 	ThickFilamentCompressionForce= c2 * exp((k2 * (NormMuscleLength-Lr2))-1);
 	return ThickFilamentCompressionForce;
 }
@@ -37,10 +37,10 @@ double getThickFilamentCompressionForce(NormMuscleLength)
 
 double getParallelElasticElementForce(NormMuscleLength, MuscleVelocity)
 {
-	const c1=23;
-	const k1= 0.046;
-	const Lr1= 1.17;
-	const eta= 0.01;
+	double c1=23;
+	double k1= 0.046;
+	double Lr1= 1.17;
+	double eta= 0.01;
 	ParallelElasticElementForce= c1 * k1 * log(exp(NormMuscleLength-Lr1)/k1 + 1) + eta * MuscleVelocity;
 	return ThickFilamentCompressionForce;
 }
@@ -56,17 +56,17 @@ double getForceVelocityCurve(NormMuscleLength, Velocity,FiberType);
 	{
 		if (MuscleFiber== SlowTwitch):
 		{
-			const av0= -4.7;
-			const av1= 8.41;
-			const av1=-5.34;
-			const bv= 0.35;
+			double av0= -4.7;
+			double av1= 8.41;
+			double av1=-5.34;
+			double bv= 0.35;
 		}
 		if (MuscleFiber== SlowTwitch):
 		{
-			const av0= -1.53;
-			const av1=0;
-			const av1=0;
-			const bv= 0.69;
+			double av0= -1.53;
+			double av1=0;
+			double av1=0;
+			double bv= 0.69;
 		}
 		ForceVelocityCurve= (bv- (av0 + av1 * NormMuscleLength +av2 * NormMuscleLength ^ 2) * Velocity)/ (bv+ Velocity);
 		
@@ -76,15 +76,15 @@ double getForceVelocityCurve(NormMuscleLength, Velocity,FiberType);
 	{
 		if (MuscleFiber== SlowTwitch):
 		{
-			const MaximumVelocity= -7.88;
-			const cv0= 5.88;
-			const cv1= 0;
+			double MaximumVelocity= -7.88;
+			double cv0= 5.88;
+			double cv1= 0;
 		}
 		if (MuscleFiber== SlowTwitch):
 		{
-			const MaximumVelocity= -9.15;
-			const cv0= -5.7;
-			const cv1= 9.18;
+			double MaximumVelocity= -9.15;
+			double cv0= -5.7;
+			double cv1= 9.18;
 		}
 			
 		ForceVelocityCurve= (MaximumVelocity- Velocity)/(MaximumVelocity +(cv0 + cv1 * NormalMuscleLength) * Velocity);
@@ -99,15 +99,15 @@ double getForceLengthCurve(NormMuscleLength, FiberType);
 {
 	if (FiberType== FastTwitch):
 	{
-		const beta = 1.55;
-		const omega = 0.75;
-		const rho = 2.12;
+		double beta = 1.55;
+		double omega = 0.75;
+		double rho = 2.12;
 	}
 	else if (FiberType== SlowTwitch):
 	{
-		const beta = 2.3;
-		const omega = 1.12;
-		const rho = 1.62;
+		double beta = 2.3;
+		double omega = 1.12;
+		double rho = 1.62;
     }
 	ForceLengthCurve= exp(- abs((NormMuscleLength ^ beta-1)/ omega)^ rho);
 	return ForceLengthCurve;
