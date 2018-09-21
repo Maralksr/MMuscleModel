@@ -42,7 +42,7 @@ double getParallelElasticElementForce(NormMuscleLength, MuscleVelocity)
 	double Lr1= 1.17;
 	double eta= 0.01;
 	ParallelElasticElementForce= c1 * k1 * log(exp(NormMuscleLength-Lr1)/k1 + 1) + eta * MuscleVelocity;
-	return ThickFilamentCompressionForce;
+	return ParallelElasticElementForce;
 }
 
 /*
@@ -112,3 +112,28 @@ double getForceLengthCurve(NormMuscleLength, FiberType);
 	ForceLengthCurve= exp(- abs((NormMuscleLength ^ beta-1)/ omega)^ rho);
 	return ForceLengthCurve;
 }
+
+double getActivation();  //Ueff (can put emg)
+{}
+
+double getFiringFrequency //Af
+{
+	
+}
+
+double getProportion()  //W
+{}
+
+double get totalMuscleForce()
+
+{/*
+Fce_temp = Ueff(i)*(W1*Af_slow*FCE1+W2*Af_fast*FCE2);
+        if Fce_temp < 0
+            Fce_temp = 0;
+        end
+        
+        % total force from contractile element
+        Fce = Fce_temp + FP1;
+		*/
+}
+		
